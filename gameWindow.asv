@@ -43,7 +43,6 @@ classdef gameWindow < handle
         chestPatternL;
         chestNumInTrial;
         chestPos;
-        chestLabel;
         
         % result tracking
         totalTimePos0;
@@ -76,7 +75,7 @@ classdef gameWindow < handle
         
         % game window definations
         X_WINDOW_SIZE = 650;
-        Y_WINDOW_SIZE = 300;
+        Y_WINDOW_SIZE = 650;
         DIVER_WIDTH = 75;
         DIVER_HEIGHT = 38;
         CHEST_WIDTH = 75;
@@ -120,8 +119,8 @@ classdef gameWindow < handle
             % though the first chest is also hardcoded, it won't be read by
             % repaintChest() method
             % since the first chest is created directly using paint(chest) 
-            obj.chestPatternR = [4, 4, 0, 0, 4, 0, 4, 0, 4, 4, 4];
-            obj.chestPatternL = [0, 0, 4, 4, 0, 4, 0, 4, 0, 0, 0];
+            obj.chestPatternR = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
+            obj.chestPatternL = [4, 4, 4, 4, 4, 1, 1, 4, 3, 0, 3];
             if(length(obj.chestPatternR) ~= length(obj.chestPatternL))
                 error('lengths of two patterns do not match!');
             end
@@ -293,10 +292,8 @@ classdef gameWindow < handle
             obj.chestIndex = mod(obj.chestIndex, obj.chestNumInTrial) + 1; % loop
             if(strcmp(obj.dir, 'R'))
                 obj.chestPos = obj.chestPatternR(obj.chestIndex);
-                obj.chestLabel = 'R';
             else
                 obj.chestPos = obj.chestPatternL(obj.chestIndex);
-                obj.chestLabel = 'L';
             end 
             switch(obj.chestPos)
                 % far left
